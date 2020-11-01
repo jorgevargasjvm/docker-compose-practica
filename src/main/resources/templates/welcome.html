@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html class="h-100">
+  <head th:replace="fragments/app/head.html"></head>
+  <body class="d-flex flex-column h-100">
+    
+    <header th:replace="fragments/app/navbar.html"></header>
+	
+	<!-- Begin page content -->
+	<main role="main" class="flex-shrink-0">
+	  <div class="container">
+	    <h1 class="mt-5" th:text="#{body.welcome}"></h1>
+	    <p th:text="#{body.msg1}"></p>
+	  </div>
+	</main>
+	
+	<footer class="footer mt-auto py-3">
+	  <div class="container">
+	    <span class="text-muted"><b th:text="#{footer.version}"></b> 0.1.0</span>
+	  </div>
+	</footer>
+
+    <div th:replace="fragments/app/js.html"></div>
+  </body>
+</html>
