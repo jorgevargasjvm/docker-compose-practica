@@ -2,27 +2,24 @@ version: '3.5'
 
 services:
     web:
-        image: PracticaDockerCompose
+        image: jorgevargasjvm/docker-compose-practica:v1.0.0
         container_name: PracticaDockerCompose
         depends_on:
             - mysql
+        ports:
+            - "80:8080"
         environment:
-            - DB_USER=userdb
-            - DB_PASSWORD=password
-            - DB_DATABASE=practicaDockerComposeDB
+            DB_HOST: mysql
+            DB_DATABASE: practicaDockerComposeDB
+            DB_USER: root
+            DB_PASSWORD: root
+
     mysql:
         image : mysql:5.7
+        restart: always
         ports:
             - "3306:3306"
         volumes:
-            - ~/db/mysql:/var/lib/mysql
-            - ./config.cnf:/etc/mysql/conf.d/config.cnf
-            - ./init-dump:/docker-entrypoint-initdb.d
+            - ./data:/var/lib/mysql
         environment:
-            TERM: xterm
-            APP_ENV: dev
-            MYSQL_USER: counter
-            MYSQL_PASSWORD: counter1123
-            MYSQL_DATABASE: counter
-            MYSQL_ROOT_PASSWORD: root
-            container_name: mysql
+            MYSQL_DATABASE: practicaDockerComposeDB
