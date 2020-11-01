@@ -11,16 +11,19 @@ services:
         environment:
             DB_HOST: mysql
             DB_DATABASE: practicaDockerComposeDB
-            DB_USER: root
-            DB_PASSWORD: root
-            DB_PORT: 33006
+            DB_USER: user
+            DB_PASSWORD: password
+            DB_PORT: 3306
 
     mysql:
         image : mysql:5.7
         restart: always
         ports:
-            - "33006:3306"
+            - "3306:3306"
         volumes:
             - ./data:/var/lib/mysql
         environment:
             MYSQL_DATABASE: practicaDockerComposeDB
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_USER: user
+            MYSQL_PASSWORD: password
