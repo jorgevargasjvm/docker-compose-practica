@@ -1,12 +1,18 @@
 package com.vargas.DockerComposePractica.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.vargas.DockerComposePractica.services.PollService;
+
 @Controller
 public class WelcomeController {
+	
+	@Autowired
+	private PollService pollService;
 
 	@GetMapping(value = "/")
 	public String index() {
@@ -14,7 +20,8 @@ public class WelcomeController {
 	}
 	
 	@GetMapping(value = "/home")
-	public String home() {
+	public String home(Model model) {
+		model.addAttribute("polls", pollService.getPollsList());
 		return "home";
 	}
 	

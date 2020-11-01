@@ -10,13 +10,35 @@
 	  <div class="container">
 	    	    
 	    <div sec:authorize="hasRole('ROLE_ADMIN')">
-			<h1 class="mt-5">Informacion para administradores</h1>
+	    	<h1 class="mt-5" th:text="#{admin.polls.title}"></h1>
+			
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col" th:text="#{users.poll.question1}"></th>
+			      <th scope="col" th:text="#{users.poll.question2}"></th>
+			      <th scope="col" th:text="#{users.poll.question3}"></th>
+			      <th scope="col" th:text="#{users.poll.question4}"></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="poll: ${polls}">
+				    <td th:text="${poll.id}" />
+				    <td th:text="${poll.question1}" />
+				    <td th:text="${poll.question2}" />
+				    <td th:text="${poll.question3}" />
+				    <td th:text="${poll.question4}" />
+				</tr>
+			  </tbody>
+			</table>
+			
 		</div>
 		
 		<div sec:authorize="hasRole('ROLE_USER')">
 			<h1 class="mt-5" th:text="#{users.poll.title}"></h1>
 			
-			<div th:if="${created}" class="alert alert-warning alert-dismissible fade show" role="alert">
+			<div th:if="${created}" class="alert alert-success alert-dismissible fade show" role="alert">
 			  <strong th:text="#{users.poll.excellent}"></strong> <p th:text="#{users.poll.successfully.created}"></p>
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			    <span aria-hidden="true">&times;</span>
