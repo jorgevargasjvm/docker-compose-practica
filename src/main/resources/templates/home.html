@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+<html class="h-100" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head th:replace="fragments/app/head.html"></head>
   <body class="d-flex flex-column h-100">
     
@@ -9,6 +9,12 @@
 	<main role="main" class="flex-shrink-0">
 	  <div class="container">
 	    <h1 class="mt-5">HOME</h1>
+	    <div sec:authorize="hasRole('ROLE_ADMIN')">
+			<h1 class="mt-5">Informacion para administradores</h1>
+		</div>
+		<div sec:authorize="hasRole('ROLE_USER')">
+			<h1 class="mt-5">Informacion para ususarios</h1>
+		</div>
 	  </div>
 	</main>
 	
