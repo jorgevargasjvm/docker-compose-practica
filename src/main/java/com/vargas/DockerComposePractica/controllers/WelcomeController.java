@@ -22,6 +22,7 @@ public class WelcomeController {
 	@GetMapping(value = "/home")
 	public String home(Model model) {
 		model.addAttribute("polls", pollService.getPollsList());
+		model.addAttribute("chartData", pollService.getBarGraphData());
 		return "home";
 	}
 	
